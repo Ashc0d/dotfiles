@@ -98,6 +98,8 @@ alias ....="cd ../../.."
 alias mkcd='mkcd_alias() { mkdir -p "$1" && cd "$1"; }; mkcd_alias'
 alias ffile='find . | grep '
 alias fhis='history | grep '
+alias si="du -sh ."
+alias siall="du -sh *"
 
 
 # Add an "alert" alias for long running commands.  Use like so:
