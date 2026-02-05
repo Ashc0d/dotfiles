@@ -10,8 +10,8 @@ alias fhis='history | grep '
 alias si="du -sh ."
 alias siall="du -sh *"
 
-if command -v exa &> /dev/null; then
-    alias ll="exa -al"
+if command -v eza &> /dev/null; then
+    alias ll="eza -al"
 else
     alias ll="ls -alF"
 fi
