@@ -1,0 +1,12 @@
+[gpg]
+	format = ssh
+[user]
+	signingkey = /home/ashc0d/.ssh/id_ed25519
+	name = Ashish Kumar Singh
+	email = 4shishks@gmail.com
+[commit]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /home/ashc0d/.config/git/allowed_signers
+[tag]
+	gpgsign = true
