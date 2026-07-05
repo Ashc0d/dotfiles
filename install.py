@@ -24,12 +24,16 @@ OS_DOTFILES = {
         "linux/tmux.conf": "~/.config/tmux/tmux.conf",
     },
     "macos": {},
-    "windows": {},
+    "windows": {
+        "windows/WindowsPowerShell/Microsoft.PowerShell_profile.ps1": "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+    },
 }
 
 LINUX_HEADLESS_DOTFILES = {
     "linux/keyd/default.conf": "~/.config/keyd/default.conf",
 }
+
+WINDOWS_POWERSHELL_PROFILE = "~/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1"
 
 
 def detect_os() -> str:
@@ -92,6 +96,18 @@ def install_dotfiles(registry: dict[str, str]) -> None:
         print(f"  Installed: {destination}")
 
 
+def print_post_install_notes(os_name: str) -> None:
+    if os_name != "windows":
+        return
+
+    profile_path = expand_destination(WINDOWS_POWERSHELL_PROFILE)
+    print("")
+    print("Windows PowerShell profile note:")
+    print("If PowerShell says scripts are disabled for this profile, run:")
+    print("  Set-ExecutionPolicy -Scope CurrentUser RemoteSigned")
+    print(f"  Unblock-File -Path '{profile_path}'")
+
+
 def main() -> int:
     try:
         os_name = detect_os()
@@ -105,6 +121,7 @@ def main() -> int:
 
         create_backup(destinations)
         install_dotfiles(registry)
+        print_post_install_notes(os_name)
 
         print("")
         print("Done! Restart your shell or source the updated config to apply changes.")
